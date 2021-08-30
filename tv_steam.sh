@@ -17,8 +17,13 @@ if [ "$ARG" == "wine" ]
 then
 	echo "running wine version"
 	wine /crypt/wine/drive_c/Program\ Files/Steam/Steam.exe -no-cef-sandbox
+	sleep 6
+	pulseaudio -k
 else
 	/usr/bin/steam-native -bigpicture
+	sleep 4
+	# Kill PA to fix BPM audio.
+	pulseaudio -k
 fi
 
 #undo the above when steam closes.
@@ -29,5 +34,4 @@ while read -r line; do
     $(echo $line | awk '{print "/usr/bin/wmctrl -i -r " $1 " -e 0," $3-3840 ",-1,-1,-1;" }')
 done <<< "$output"
 
-xrandr --output 'DP-3' --primary --output 'HDMI-0' --off 
-
+xrandr --output 'DP-3' --primary --output 'HDMI-0' --off
