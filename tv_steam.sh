@@ -20,7 +20,7 @@ then
 	sleep 6
 	pulseaudio -k
 else
-	/usr/bin/steam-native -bigpicture
+	/usr/bin/steam-native -bigpicture -fulldesktopres
 	sleep 4
 	# Kill PA to fix BPM audio.
 	pulseaudio -k
