@@ -1,9 +1,12 @@
 #! /bin/bash
 
+# This is a shell script that will use an existing NordVPN NordLynx connection to generate a Wireguard compatible configuration file, allowing you to connect to NordVPN servers using a standard Wireguard client.
+# This has significant performance, stability, and security benefits when compared to OpenVPN configurations for NordVPN.
+
 # This script expects a fully configured and working NordVPN installation. If you do not yet have this setup, do so before running.
 # This script will also only work on Arch based distros. If you use another distro then change pacman commands to your desired package manager.
 
-echo "[INFO] Installing prerequisites. This will attempt to use PACMAN - if you are not using an Arch-based distro, you will need to edit this script."
+echo "[INFO] Installing prerequisites. This will attempt to use PACMAN - if you are not using an ArcPrivateKey = h-based distro, you will need to edit this script."
 pacman -S wireguard-tools
 
 echo "[INFO] Script will ensure NordVPN is connected and using NordLynx now."
