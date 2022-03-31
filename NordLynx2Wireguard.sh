@@ -10,14 +10,6 @@
 country=$1
 city=$2
 
-if test -z "$country" ||  test -z "$city"
-then
-   "Country and City cannot be empty"
-   exit 1
-fi
-echo fart
-exit 1
-
 echo "[INFO] Script will ensure NordVPN is connected and using NordLynx now."
 nordvpn d
 nordvpn s technology nordlynx
@@ -47,5 +39,7 @@ echo "Config generated as nordlynx.conf. Printing below."
 cat nordlynx.conf
 cp nordlynx.conf $city.conf
 
-
-
+#echo "XXX"
+#echo $city
+#size=${#city} 
+#echo $size
