@@ -6,12 +6,22 @@
 # This script expects a fully configured and working NordVPN installation. If you do not yet have this setup, do so before running.
 # This script will also only work on Arch based distros. If you use another distro then change pacman commands to your desired package manager.
 
-echo "[INFO] Installing prerequisites. This will attempt to use PACMAN - if you are not using an ArcPrivateKey = h-based distro, you will need to edit this script."
-pacman -S wireguard-tools
+
+country=$1
+city=$2
+
+if test -z "$country" ||  test -z "$city"
+then
+   "Country and City cannot be empty"
+   exit 1
+fi
+echo fart
+exit 1
 
 echo "[INFO] Script will ensure NordVPN is connected and using NordLynx now."
+nordvpn d
 nordvpn s technology nordlynx
-nordvpn c
+nordvpn c $country $city
 echo "[INFO] NordVPN connected."
 
 echo "[INFO] Now generating config file."
@@ -21,6 +31,7 @@ PRIVATEKEY=$(wg showconf nordlynx | grep 'PrivateKey = .*')
 PUBLICKEY=$(wg showconf nordlynx | grep 'PublicKey = .*')
 ENDPOINT=$(wg showconf nordlynx | grep 'Endpoint = .*')
 
+rm nordlynx.conf
 echo "[INTERFACE]" >> nordlynx.conf
 echo "# Generated using Tomba's NordLynx2WireGuard Script" >> nordlynx.conf
 echo "Address = ${IP}" >> nordlynx.conf
@@ -34,6 +45,7 @@ echo "PersistentKeepalive = 25" >> nordlynx.conf
 
 echo "Config generated as nordlynx.conf. Printing below."
 cat nordlynx.conf
+cp nordlynx.conf $city.conf
 
 
 
